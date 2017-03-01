@@ -1,0 +1,143 @@
+int p4;
+int p5;
+int p6;
+
+int p7;
+int p8;
+int p9;
+
+int c1;
+int c2;
+int c3;
+
+int r1;
+int r2;
+int r3;
+
+
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(4, INPUT);
+  pinMode(5, INPUT); 
+  pinMode(6, INPUT); 
+   
+  pinMode(7, INPUT); 
+  pinMode(8, INPUT); 
+  pinMode(9, INPUT);      
+
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  
+  pinMode(13, OUTPUT);
+  
+
+
+
+}
+
+void loop() {
+  p4= digitalRead(4);
+  p5= digitalRead(5);
+  p6= digitalRead(6);
+
+  p7= digitalRead(7);
+  p8= digitalRead(8);
+  p9= digitalRead(9);
+
+//ecuacion resultado 1
+  if((!p4 && p7)||(p4&&!p7)){
+    Serial.print(" 1"  );
+    digitalWrite(10,HIGH);
+    r1=1;
+    }
+    else{
+        Serial.print(" 0"  );
+        digitalWrite(10,LOW);
+        r1=0;
+      }
+      //carry 1
+  if(p4 && p7){
+      Serial.print(" carry1 = 1"  );
+    c1=1;
+    }
+    else{
+        Serial.print(" carry1 = 0"  );
+        c1=0;
+      }
+
+
+      //ecucacion resultado 2
+   if((!p5 && p8)||(p5&&!p8)){
+    r2=1; 
+   }
+   else{
+    r2=0;
+   }
+    
+   if((!r2 && c1)||(r2&&!c1)){
+     Serial.print(" 1"  );
+     digitalWrite(11,HIGH);
+    }
+   else{
+        Serial.print(" 0"  );
+        digitalWrite(11,LOW);
+      } 
+
+//carry 2
+
+ if((p5&&p8)||(p8&&c1)||(p5&&c1) ){
+    c2=1;
+     Serial.print("carry2= 1"  );
+  }
+  else{
+     c2=0;
+     Serial.print("carry2= 0"  );
+    }
+
+
+      //resultado 3
+
+   if(((!p6 && p9)||(p6&&!p9))){
+    r3=1; 
+   }
+   else{
+    r3=0;
+    }
+
+      if((!r3 && c2)||(r3&&!c2)){
+         r3=1;
+         Serial.print(" r3= 1"  );
+       digitalWrite(12,HIGH);
+         
+        }
+        else{
+             r3=0;
+         Serial.print(" r3= 0"  );
+         digitalWrite(12,LOW);
+          }
+
+//carry 3
+ if(((p6&&p9)||(p9&&c2)||(p6&&c2) )){
+     c3=1;
+   Serial.print(" carry 3 = 1"  );
+      digitalWrite(13,HIGH);
+  } 
+ else{
+  c3=0;
+   Serial.print(" carry 3 = 0"  );
+      digitalWrite(13,LOW);
+  
+  }        
+
+}
+
+
+
+
+
+
+
+
+
