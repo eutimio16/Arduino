@@ -22,14 +22,14 @@ void setup(){
   Serial.begin(9600);
 }
 void loop(){
-  // lanzamos un pequeño pulso para activar el sensor
+//sensor
   
   digitalWrite(disparador, HIGH);
   delayMicroseconds(10);
   digitalWrite(disparador, LOW);
   tiempo = (pulseIn(entrada, HIGH)/2); 
   distancia = float(tiempo * 0.0343);
-
+//pusbutton value
    val = digitalRead(pushbutton);
 
  
@@ -60,7 +60,7 @@ void loop(){
     
     }
    
-  // y lo mostramos por el puerto serie una vez por segundo
+ // monitor serial print
   Serial.println(distancia);
   delay(1000);
 }
